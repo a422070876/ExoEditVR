@@ -28,8 +28,9 @@ public class RotationImageView extends ImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        canvas.save();
         canvas.rotate(rotate,getWidth()/2,getHeight()/2);
         super.onDraw(canvas);
-
+        canvas.restore();
     }
 }

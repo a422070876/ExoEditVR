@@ -1,1 +1,1 @@
-include ':app', ':exoplayer', ':sphere'
+include ':app', ':exoplayer'

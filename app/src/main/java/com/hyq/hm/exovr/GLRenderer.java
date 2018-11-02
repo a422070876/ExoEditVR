@@ -120,34 +120,6 @@ public class GLRenderer {
         Matrix.multiplyMM(mMVPMatrix, 0, projectionMatrix, 0, modelViewMatrix, 0);
 
 
-
-//        Matrix.multiplyMM(modelViewMatrix, 0, viewMatrix, 0, modelMatrix, 0);
-//        Matrix.multiplyMM(mMVPMatrix, 0, projectionMatrix, 0, modelViewMatrix, 0);
-
-
-////        Matrix.setIdentityM(angleMatrix,0);
-////        Matrix.rotateM(angleMatrix,0,90,1,0,0);
-//
-//
-//        Matrix.multiplyMM(angleMatrix, 0, modelMatrix, 0, angleMatrix, 0);
-//        Matrix.setRotateM(mMVPMatrix,0,90,0,0,1);
-////        Matrix.rotateM(mMVPMatrix,0,180,0,1,0);
-////        Matrix.rotateM(mMVPMatrix,0,90,0,0,1);
-//        Matrix.multiplyMM(mMVPMatrix, 0, mMVPMatrix, 0, viewMatrix, 0);
-//        Matrix.multiplyMM(modelViewMatrix, 0, mMVPMatrix, 0, angleMatrix, 0);
-//
-////        Matrix.rotateM(modelViewMatrix,0,90 ,0,1,0);
-////        if(ax >= 90 && ax <= 270){
-////            Matrix.rotateM(modelViewMatrix,0,ay ,1,0,0);
-////        }else{
-////            Matrix.rotateM(modelViewMatrix,0,ay ,0,1,0);
-////        }
-//        Matrix.multiplyMM(mMVPMatrix, 0, projectionMatrix, 0, modelViewMatrix, 0);
-
-
-//        Matrix.rotateM(mMVPMatrix,0,ax,-1,0,0);
-//        Matrix.rotateM(mMVPMatrix,0,ax ,0,0,1);
-//        Matrix.rotateM(mMVPMatrix,0,ay,0,1,0);
         GLES20.glUniformMatrix4fv(uMatrixHandle,1,false,mMVPMatrix,0);
         GLES20.glUniformMatrix4fv(uSTMatrixHandle,1,false,mSTMatrix,0);
 
