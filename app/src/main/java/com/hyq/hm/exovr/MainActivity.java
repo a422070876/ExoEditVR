@@ -90,6 +90,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+                if(player != null){
+                    screenWidth = width;
+                    screenHeight = height;
+                    player.setVideoSurface(holder.getSurface());
+                    player.setPlayWhenReady(isPlayer);
+                }
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+
+            }
+        });
+
         findViewById(R.id.video_view).setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -291,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         player.prepare(videoSource);
-        if(screenWidth == 0 && surfaceView.getWidth() != 0){
+        if(mSurface == null && surfaceView.getWidth() != 0 && surfaceView.getHeight() != 0){
             screenWidth = surfaceView.getWidth();
             screenHeight = surfaceView.getHeight();
             player.setVideoSurface(surfaceView.getHolder().getSurface());
@@ -391,27 +413,6 @@ public class MainActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
         isResume = true;
-        if(player != null){
-            player.setPlayWhenReady(isPlayer);
-        }
-        surface();
-    }
-    private void surface(){
-        surfaceView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(mSurface == null){
-                    if(player != null && surfaceView.getHolder().getSurface() != null && surfaceView.getWidth() != 0 && surfaceView.getHeight() != 0){
-                        screenWidth = surfaceView.getWidth();
-                        screenHeight = surfaceView.getHeight();
-                        player.setVideoSurface(surfaceView.getHolder().getSurface());
-                    }else{
-                        surface();
-                    }
-                }
-            }
-        },100);
-
     }
     @Override
     protected void onPause() {

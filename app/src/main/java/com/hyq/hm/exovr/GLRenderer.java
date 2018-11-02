@@ -27,7 +27,6 @@ public class GLRenderer {
     private final float[] modelViewMatrix = new float[16];
     private final float[] mMVPMatrix = new float[16];
 
-    private final float[] angleMatrix = new float[16];
 
 
     private final float[] mSTMatrix = new float[16];
@@ -85,18 +84,16 @@ public class GLRenderer {
         }
     }
     public void onSurfaceChanged(int width, int height) {
+        if(surfaceTexture != null){
+            surfaceTexture.setDefaultBufferSize(width,height);
+        }
         screenWidth=width; screenHeight=height;
         float ratio=(float)width/height;
-
         Matrix.perspectiveM(projectionMatrix, 0, 90f, ratio,  1, 50);
         Matrix.setLookAtM(viewMatrix, 0,
                 0.0f, 0.0f, 0.0f,
                 0.0f, 0.0f,-1.0f,
                 0.0f, 1.0f, 0.0f);
-    }
-
-    public float[] getModelMatrix() {
-        return modelMatrix;
     }
 
     public float xAngle=0f;
