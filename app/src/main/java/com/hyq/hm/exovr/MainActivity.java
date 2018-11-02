@@ -369,6 +369,16 @@ public class MainActivity extends AppCompatActivity {
 
                             renderer.yAngle += dx*0.025f;
                             renderer.xAngle -= dy*0.025f;
+                            if(renderer.yAngle > 360){
+                                renderer.yAngle -= 360;
+                            }else if(renderer.yAngle < 360){
+                                renderer.yAngle += 360;
+                            }
+                            if(renderer.yAngle > 360){
+                                renderer.yAngle -= 360;
+                            }else if(renderer.yAngle < 360){
+                                renderer.yAngle += 360;
+                            }
                             if (renderer.xAngle < -60f) {
                                 renderer.xAngle = -60f;
                             } else if (renderer.xAngle > 30f) {
@@ -457,7 +467,10 @@ public class MainActivity extends AppCompatActivity {
     int yy = 0;
     private void zero() {
         mSensorManager.unregisterListener(mSensorEventListener);
-        yy = (int) ((renderer.yAngle - 90) / 10f);
+        float yAngle = renderer.yAngle;
+        int a = (int) (yAngle/360);
+        yy = (int) ((yAngle - 90) / 10f);
+        yy -= a*36;
 
         guideView.post(new Runnable() {
 
