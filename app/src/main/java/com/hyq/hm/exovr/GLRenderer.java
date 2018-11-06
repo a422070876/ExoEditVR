@@ -75,10 +75,12 @@ public class GLRenderer {
     public SurfaceTexture getSurfaceTexture() {
         return surfaceTexture;
     }
+    public void onSurfaceDestroyed(){
+        GLES20.glDeleteProgram(programId);
+        GLES20.glDeleteTextures(1,textures,0);
+    }
     public void release(){
         if(surfaceTexture != null){
-            GLES20.glDeleteProgram(programId);
-            GLES20.glDeleteTextures(1,textures,0);
             surfaceTexture.release();
             surfaceTexture = null;
         }

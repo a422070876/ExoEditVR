@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRelease() {
                 if(renderer != null){
-                    renderer.release();
+                    renderer.onSurfaceDestroyed();
                 }
                 if(eglUtils != null){
                     eglUtils.release();
@@ -445,7 +445,9 @@ public class MainActivity extends AppCompatActivity {
             player.stop();
             player.release();
         }
-
+        if(renderer != null){
+            renderer.release();
+        }
     }
 
     public void onPlayer(View view){
