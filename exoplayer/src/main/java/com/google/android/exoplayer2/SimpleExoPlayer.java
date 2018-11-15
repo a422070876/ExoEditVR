@@ -936,18 +936,11 @@ public class SimpleExoPlayer implements ExoPlayer, Player.VideoComponent, Player
       }
     }
     @Override
-    public Surface onSurface(Surface surface) {
+    public Surface onSurface(Surface surface,int width, int height) {
       for (VideoTimeListener videoTimeListener : videoTimeListeners) {
-        return videoTimeListener.onSurface(surface);
+        return videoTimeListener.onSurface(surface,width,height);
       }
-      return null;
-    }
-
-    @Override
-    public void onSizeChanged(int width, int height) {
-      for (VideoTimeListener videoTimeListener : videoTimeListeners) {
-         videoTimeListener.onSizeChanged(width,height);
-      }
+      return surface;
     }
 
     @Override

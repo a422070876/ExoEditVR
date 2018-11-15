@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
         player.addVideoTiemListener(new VideoTimeListener() {
 
             @Override
-            public Surface onSurface(Surface surface) {
+            public Surface onSurface(Surface surface,int width, int height) {
                 if(surface == null){
                     return null;
                 }
@@ -251,12 +251,6 @@ public class MainActivity extends AppCompatActivity {
                 mSurface = new Surface(renderer.getSurfaceTexture());
                 return mSurface;
             }
-
-            @Override
-            public void onSizeChanged(int width, int height) {
-
-            }
-
             @Override
             public void onVideoTimeChanged(long time) {
 
